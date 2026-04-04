@@ -61,7 +61,7 @@ export function AboutArticles() {
 
         <div className="max-w-5xl mx-auto space-y-6">
           {articles.map((article, index) => (
-            <motion.div
+            <motion.article
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -128,7 +128,7 @@ export function AboutArticles() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

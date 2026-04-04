@@ -116,7 +116,7 @@ export function Testimonials() {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {currentTestimonials.map((testimonial, index) => (
-            <motion.div
+            <motion.article
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +151,7 @@ export function Testimonials() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
