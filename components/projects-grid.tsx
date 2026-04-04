@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { projectsData, getUniqueCategories, getUniqueCategoriesEs } from "@/lib/projects-data"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -92,10 +93,13 @@ export function ProjectsGrid() {
             >
               <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-accent/30 overflow-hidden flex flex-col">
                 <div className="relative h-56 overflow-hidden">
-                  <img
+                  <Image
                     src={project.image || "/placeholder.svg"}
                     alt={language === "en" ? project.title : project.titleEs}
+                    width={800}
+                    height={600}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
 

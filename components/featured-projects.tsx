@@ -7,6 +7,7 @@ import { ArrowRight, Github, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
+import Image from "next/image"
 import { getRecentProjects, truncateText } from "@/lib/projects-data"
 
 export function FeaturedProjects() {
@@ -63,10 +64,13 @@ export function FeaturedProjects() {
             >
               <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-accent/30 overflow-hidden group flex flex-col">
                 <Link href={`/projects#project-${project.slug}`} className="relative block h-56 overflow-hidden">
-                  <img
+                  <Image
                     src={project.image || "/placeholder.svg"}
                     alt={language === "en" ? project.title : project.titleEs}
+                    width={800}
+                    height={600}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute top-4 left-4">
                     <div className="w-10 h-10 bg-background/90 backdrop-blur-sm rounded-lg flex items-center justify-center border border-accent/20">

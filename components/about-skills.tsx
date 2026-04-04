@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Code, Database, Brain, BarChart3, Globe, Users, BookOpen, Sparkles } from "lucide-react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const skillCategories = [
   {
@@ -535,9 +536,11 @@ export function AboutSkills() {
                               {skill.logo && (
                                 <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
                                   {skill.logo.startsWith("http") ? (
-                                    <img
+                                    <Image
                                       src={skill.logo || "/placeholder.svg"}
                                       alt={skill.name}
+                                      width={32}
+                                      height={32}
                                       className="w-full h-full object-contain"
                                     />
                                   ) : (
