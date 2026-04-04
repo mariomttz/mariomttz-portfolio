@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
+import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
 import { Sparkles } from "lucide-react"
 
@@ -114,9 +115,11 @@ export function TechStack() {
                 >
                   <CardContent className="p-6 flex flex-col items-center justify-center space-y-3">
                     <div className="w-16 h-16 flex items-center justify-center">
-                      <img
+                      <Image
                         src={tech.logo || "/placeholder.svg"}
                         alt={tech.name}
+                        width={64}
+                        height={64}
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -137,9 +140,11 @@ export function TechStack() {
                 >
                   <CardContent className="p-6 flex flex-col items-center justify-center space-y-3">
                     <div className="w-16 h-16 flex items-center justify-center">
-                      <img
+                      <Image
                         src={tech.logo || "/placeholder.svg"}
                         alt={tech.name}
+                        width={64}
+                        height={64}
                         className="w-full h-full object-contain"
                       />
                     </div>
