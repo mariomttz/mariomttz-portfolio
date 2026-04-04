@@ -55,7 +55,7 @@ export function FeaturedProjects() {
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {featuredProjects.map((project, index) => (
-            <motion.div
+            <motion.article
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -120,7 +120,7 @@ export function FeaturedProjects() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
 
