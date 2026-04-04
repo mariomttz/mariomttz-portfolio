@@ -5,20 +5,9 @@ import { GeistMono } from "geist/font/mono"
 
 import "./globals.css"
 
-// Configure Geist fonts with next/font optimization
-const geistSans = GeistSans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-geist-sans',
-  preload: true,
-})
-
-const geistMono = GeistMono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-geist-mono',
-  preload: true,
-})
+// Geist fonts are pre-configured with optimization settings
+const geistSans = GeistSans
+const geistMono = GeistMono
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/contexts/language-context"
 import { ScrollToTop } from "@/components/scroll-to-top"
