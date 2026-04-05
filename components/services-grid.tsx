@@ -130,6 +130,7 @@ export function ServicesGrid() {
                       className="w-full bg-transparent hover:bg-accent/10 hover:text-accent hover:border-accent/50 transition-all duration-300 mt-auto dark:bg-transparent dark:hover:bg-accent/10 dark:hover:text-accent dark:hover:border-accent/50 cursor-pointer"
                       variant="outline"
                       size="lg"
+                      aria-label={`${currentContent.getQuote} - ${language === "en" ? service.title : service.titleEs}`}
                     >
                       {currentContent.getQuote}
                     </Button>
