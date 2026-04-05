@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Moon, Sun, Menu, X, Globe, Monitor, ChevronDown } from "lucide-react"
@@ -14,7 +15,7 @@ const navigation = [
   { name: "Services", href: "/services", nameEs: "Servicios" },
   { name: "Projects", href: "/projects", nameEs: "Proyectos" },
   { name: "About", href: "/about", nameEs: "Sobre mí" },
-  { name: "Contact", href: "/contact#form", nameEs: "Contacto" },
+  { name: "Contact", href: "/contact", nameEs: "Contacto" },
 ]
 
 const themeTranslations = {
@@ -41,6 +42,19 @@ export function Navbar() {
   const { language, setLanguage } = useLanguage()
   const { setTheme, theme } = useTheme()
   const pathname = usePathname()
+
+  // Helper function to check if a navigation item is active
+  const isActive = (href: string) => {
+    // Guard against null pathname
+    if (!pathname) return false
+    
+    // For home page, exact match
+    if (href === '/') {
+      return pathname === '/'
+    }
+    // For other pages, check if pathname starts with href
+    return pathname === href || pathname.startsWith(href + '/')
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,6 +112,7 @@ export function Navbar() {
                 variant="ghost"
                 size="sm"
                 className="hover:bg-accent/10 hover:text-accent transition-colors min-w-[70px] cursor-pointer"
+                aria-label={language === "en" ? "Select language" : "Seleccionar idioma"}
               >
                 <Globe className="h-4 w-4" />
                 <span className="ml-2">{language.toUpperCase()}</span>
@@ -106,15 +121,26 @@ export function Navbar() {
                 variant="ghost"
                 size="sm"
                 className="hover:bg-accent/10 hover:text-accent transition-colors min-w-[100px] cursor-pointer"
+                aria-label={language === "en" ? "Select theme" : "Seleccionar tema"}
               >
                 <Monitor className="h-4 w-4" />
               </Button>
             </div>
             <div className="md:hidden flex items-center space-x-2">
-              <Button variant="ghost" size="sm" className="hover:bg-accent/10 hover:text-accent transition-colors">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="hover:bg-accent/10 hover:text-accent transition-colors"
+                aria-label={language === "en" ? "Select theme" : "Seleccionar tema"}
+              >
                 <Monitor className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="sm" className="hover:bg-accent/10 hover:text-accent transition-colors">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="hover:bg-accent/10 hover:text-accent transition-colors"
+                aria-label={language === "en" ? "Open menu" : "Abrir menú"}
+              >
                 <Menu className="h-5 w-5" />
               </Button>
             </div>
@@ -135,7 +161,7 @@ export function Navbar() {
           <div className="flex-shrink-0">
             <Link
               href="/"
-              className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hover:opacity-80 transition-opacity"
+              className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
             >
               Mario Martinez
             </Link>
@@ -144,22 +170,27 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`transition-all duration-200 text-sm font-medium relative group ${
-                    pathname === item.href ? "text-primary" : "text-muted-foreground hover:text-primary"
-                  }`}
-                >
-                  {language === "en" ? item.name : item.nameEs}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
-                      pathname === item.href ? "w-full" : "w-0 group-hover:w-full"
+              {navigation.map((item) => {
+                const active = isActive(item.href)
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`transition-all duration-200 text-sm font-medium relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded ${
+                      active ? "text-primary" : "text-muted-foreground hover:text-primary"
                     }`}
-                  />
-                </Link>
-              ))}
+                    aria-current={active ? "page" : undefined}
+                  >
+                    {language === "en" ? item.name : item.nameEs}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 ${
+                        active ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                      aria-hidden="true"
+                    ></span>
+                  </Link>
+                )
+              })}
             </div>
           </div>
 
@@ -171,6 +202,7 @@ export function Navbar() {
                   variant="ghost"
                   size="sm"
                   className="hover:bg-accent/10 hover:text-accent transition-colors min-w-[70px] cursor-pointer"
+                  aria-label={language === "en" ? "Select language" : "Seleccionar idioma"}
                 >
                   <Globe className="h-4 w-4" />
                   <span className="ml-2">{language.toUpperCase()}</span>
@@ -199,6 +231,7 @@ export function Navbar() {
                   variant="ghost"
                   size="sm"
                   className="hover:bg-accent/10 hover:text-accent transition-colors min-w-[100px] cursor-pointer"
+                  aria-label={language === "en" ? "Select theme" : "Seleccionar tema"}
                 >
                   {getThemeIcon()}
                   <span className="ml-2">{getThemeLabel()}</span>
@@ -235,7 +268,12 @@ export function Navbar() {
           <div className="md:hidden flex items-center space-x-2">
             <DropdownMenu open={mobileThemeDropdownOpen} onOpenChange={setMobileThemeDropdownOpen}>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="hover:bg-accent/10 hover:text-accent transition-colors cursor-pointer">
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="hover:bg-accent/10 hover:text-accent transition-colors cursor-pointer"
+                  aria-label={language === "en" ? "Select theme" : "Seleccionar tema"}
+                >
                   {getThemeIcon()}
                 </Button>
               </DropdownMenuTrigger>
@@ -268,6 +306,8 @@ export function Navbar() {
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
               className="hover:bg-accent/10 hover:text-accent transition-colors"
+              aria-label={isOpen ? (language === "en" ? "Close menu" : "Cerrar menú") : (language === "en" ? "Open menu" : "Abrir menú")}
+              aria-expanded={isOpen}
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -282,12 +322,13 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-3 py-2 rounded-md transition-all duration-200 ${
-                    pathname === item.href
+                  className={`block px-3 py-2 rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                    isActive(item.href)
                       ? "text-primary bg-primary/10 border-l-2 border-primary"
                       : "text-muted-foreground hover:text-primary hover:bg-accent/10 hover:border-l-2 hover:border-accent"
                   }`}
                   onClick={() => setIsOpen(false)}
+                  aria-current={isActive(item.href) ? "page" : undefined}
                 >
                   {language === "en" ? item.name : item.nameEs}
                 </Link>
@@ -299,6 +340,7 @@ export function Navbar() {
                       variant="ghost"
                       size="sm"
                       className="w-full justify-start hover:bg-accent/10 hover:text-accent cursor-pointer"
+                      aria-label={language === "en" ? "Select language" : "Seleccionar idioma"}
                     >
                       <Globe className="h-4 w-4 mr-2" />
                       {language.toUpperCase()}

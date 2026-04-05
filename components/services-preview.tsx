@@ -68,7 +68,10 @@ export function ServicesPreview() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Link href={`/services#${service.id}`} className="block h-full">
+                <Link 
+                  href={`/services#${service.id}`} 
+                  className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg"
+                >
                   <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-border/50 hover:border-primary/30 group bg-card cursor-pointer">
                     <CardHeader className="pb-4">
                       <div className="flex items-center justify-between mb-4">

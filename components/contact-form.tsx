@@ -1,8 +1,6 @@
 "use client"
 
-import type React from "react"
-
-import { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useLanguage } from "@/contexts/language-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -212,10 +210,12 @@ export function ContactForm({ preSelectedService }: ContactFormProps) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             className="text-center"
+            role="status"
+            aria-live="polite"
           >
             <Card className="border-success/30 bg-success/5 dark:bg-success/10">
               <CardContent className="pt-8 pb-8">
-                <CheckCircle className="h-16 w-16 text-success mx-auto mb-4" />
+                <CheckCircle className="h-16 w-16 text-success mx-auto mb-4" aria-hidden="true" />
                 <h3 className="text-2xl font-bold text-success mb-2">{currentContent.successTitle}</h3>
                 <p className="text-success/80">{currentContent.successMessage}</p>
               </CardContent>
@@ -341,6 +341,7 @@ export function ContactForm({ preSelectedService }: ContactFormProps) {
                       onChange={(e) => handleInputChange("name", e.target.value)}
                       required
                       className="h-11"
+                      aria-required="true"
                     />
                   </div>
                   <div className="space-y-2">
@@ -355,6 +356,7 @@ export function ContactForm({ preSelectedService }: ContactFormProps) {
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       required
                       className="h-11"
+                      aria-required="true"
                     />
                   </div>
                 </div>
@@ -383,7 +385,7 @@ export function ContactForm({ preSelectedService }: ContactFormProps) {
                       onValueChange={(value) => handleInputChange("service", value)}
                       required
                     >
-                      <SelectTrigger className="h-11 cursor-pointer">
+                      <SelectTrigger className="h-11 cursor-pointer" aria-required="true">
                         <SelectValue placeholder={currentContent.servicePlaceholder} />
                       </SelectTrigger>
                       <SelectContent>
@@ -445,6 +447,7 @@ export function ContactForm({ preSelectedService }: ContactFormProps) {
                     rows={10}
                     required
                     className="resize-none"
+                    aria-required="true"
                   />
                 </div>
 

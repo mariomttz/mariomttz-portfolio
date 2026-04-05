@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 
 type Language = "en" | "es"

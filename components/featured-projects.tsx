@@ -63,7 +63,10 @@ export function FeaturedProjects() {
               viewport={{ once: true }}
             >
               <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-accent/30 overflow-hidden group flex flex-col">
-                <Link href={`/projects#project-${project.slug}`} className="relative block h-56 overflow-hidden">
+                <Link 
+                  href={`/projects#project-${project.slug}`} 
+                  className="relative block h-56 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                >
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={language === "en" ? project.title : project.titleEs}
@@ -97,7 +100,8 @@ export function FeaturedProjects() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center h-9 px-4 text-sm font-medium rounded-md border border-border bg-transparent hover:bg-accent/10 hover:text-accent hover:border-accent/50 dark:border-border dark:hover:bg-accent/10 dark:hover:text-accent dark:hover:border-accent/50 transition-colors cursor-pointer"
+                      className="flex-1 inline-flex items-center justify-center h-9 px-4 text-sm font-medium rounded-md border border-border bg-transparent hover:bg-accent/10 hover:text-accent hover:border-accent/50 dark:border-border dark:hover:bg-accent/10 dark:hover:text-accent dark:hover:border-accent/50 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      aria-label={`${currentContent.viewCode} - ${language === "en" ? project.title : project.titleEs}`}
                     >
                       <Github className="h-4 w-4 mr-2" />
                       {currentContent.viewCode}

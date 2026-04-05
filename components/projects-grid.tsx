@@ -75,6 +75,8 @@ export function ProjectsGrid() {
               size="sm"
               onClick={() => setSelectedCategory(category)}
               className="transition-all duration-200 hover:border-accent/50 cursor-pointer"
+              aria-label={`${language === "en" ? "Filter by" : "Filtrar por"} ${category}`}
+              aria-pressed={selectedCategory === category}
             >
               {category}
             </Button>
@@ -155,15 +157,16 @@ export function ProjectsGrid() {
                   </div>
 
                   <div className="flex gap-2 pt-2 mt-auto">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center h-9 px-3 text-sm font-medium rounded-md border border-border bg-transparent text-foreground transition-colors hover:bg-accent/10 hover:text-accent hover:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                    >
-                      <Github className="h-4 w-4 mr-2" />
-                      {currentContent.viewCode}
-                    </a>
+                    <Button asChild size="sm" variant="outline" className="flex-1">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="h-4 w-4 mr-2" />
+                        {currentContent.viewCode}
+                      </a>
+                    </Button>
                     {project.demo ? (
                       <Button asChild size="sm" className="flex-1">
                         <a href={project.demo} target="_blank" rel="noopener noreferrer">

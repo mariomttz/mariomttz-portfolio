@@ -11,6 +11,7 @@ const geistMono = GeistMono
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/contexts/language-context"
 import { ScrollToTop } from "@/components/scroll-to-top"
+import { SkipNav } from "@/components/skip-nav"
 import { Suspense } from "react"
 
 export const metadata: Metadata = {
@@ -100,6 +101,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <LanguageProvider>
+              <SkipNav />
               <ScrollToTop />
               {children}
             </LanguageProvider>

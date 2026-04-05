@@ -506,7 +506,7 @@ export function AboutSkills() {
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
-                  className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-3 sm:py-2 data-[state=active]:bg-accent/10 data-[state=active]:text-accent dark:data-[state=active]:[text-shadow:0_0_20px_oklch(0.7_0.24_295),0_0_40px_oklch(0.7_0.24_295_/_0.5)] text-xs sm:text-sm cursor-pointer"
+                  className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-3 sm:py-2 data-[state=active]:bg-accent/10 data-[state=active]:text-accent dark:data-[state=active]:bg-accent/10 dark:data-[state=active]:text-accent text-xs sm:text-sm cursor-pointer transition-all"
                 >
                   <category.icon className="h-4 w-4 flex-shrink-0" />
                   <span className="text-center">{language === "en" ? category.title : category.titleEs}</span>

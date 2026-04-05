@@ -1,10 +1,11 @@
 /** @type {import('jest').Config} */
 const config = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   roots: ['<rootDir>/tests'],
   testMatch: [
     '**/*.test.ts',
+    '**/*.test.tsx',
     '**/*.property.test.ts'
   ],
   moduleNameMapper: {

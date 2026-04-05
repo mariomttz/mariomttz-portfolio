@@ -1,4 +1,5 @@
 "use client"
+import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Github, Linkedin, Mail, Calendar, Heart, ArrowUp, ChevronDown } from "lucide-react"
@@ -135,7 +136,7 @@ export function Footer() {
                   <li key={index}>
                     <Link
                       href={link.href}
-                      className="text-muted-foreground hover:text-accent transition-colors duration-200 hover:translate-x-1 inline-block"
+                      className="text-muted-foreground hover:text-accent transition-colors duration-200 hover:translate-x-1 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                     >
                       {language === "en" ? link.name : link.nameEs}
                     </Link>
@@ -152,7 +153,7 @@ export function Footer() {
                   <li key={service.id}>
                     <Link
                       href={`/contact?service=${service.id}`}
-                      className="text-muted-foreground hover:text-accent transition-colors duration-200 hover:translate-x-1 inline-block"
+                      className="text-muted-foreground hover:text-accent transition-colors duration-200 hover:translate-x-1 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                     >
                       {language === "en" ? service.title : service.titleEs}
                     </Link>
@@ -180,9 +181,14 @@ export function Footer() {
           <div className="lg:hidden mt-8 space-y-4">
             {/* Quick Links Dropdown */}
             <div className="overflow-hidden">
-              <button onClick={() => toggleSection("quickLinks")} className="w-full flex items-center justify-between">
+              <button 
+                onClick={() => toggleSection("quickLinks")} 
+                className="w-full flex items-center justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded p-2"
+                aria-expanded={openSections.quickLinks}
+                aria-label={openSections.quickLinks ? (language === "en" ? "Collapse quick links" : "Contraer enlaces rápidos") : (language === "en" ? "Expand quick links" : "Expandir enlaces rápidos")}
+              >
                 <h4 className="font-semibold text-lg text-primary">{currentContent.quickLinks}</h4>
-                <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                <ChevronDown className={`h-5 w-5 text-muted-foreground transition-transform ${openSections.quickLinks ? 'rotate-180' : ''}`} />
               </button>
               <div
                 className={`overflow-hidden transition-all duration-300 ${
@@ -194,7 +200,7 @@ export function Footer() {
                     <li key={index}>
                       <Link
                         href={link.href}
-                        className="text-muted-foreground hover:text-accent transition-colors duration-200 block"
+                        className="text-muted-foreground hover:text-accent transition-colors duration-200 block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                       >
                         {language === "en" ? link.name : link.nameEs}
                       </Link>
@@ -206,9 +212,14 @@ export function Footer() {
 
             {/* Services Dropdown */}
             <div className="overflow-hidden">
-              <button onClick={() => toggleSection("services")} className="w-full flex items-center justify-between">
+              <button 
+                onClick={() => toggleSection("services")} 
+                className="w-full flex items-center justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded p-2"
+                aria-expanded={openSections.services}
+                aria-label={openSections.services ? (language === "en" ? "Collapse services" : "Contraer servicios") : (language === "en" ? "Expand services" : "Expandir servicios")}
+              >
                 <h4 className="font-semibold text-lg text-primary">{currentContent.services}</h4>
-                <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                <ChevronDown className={`h-5 w-5 text-muted-foreground transition-transform ${openSections.services ? 'rotate-180' : ''}`} />
               </button>
               <div
                 className={`overflow-hidden transition-all duration-300 ${
@@ -220,7 +231,7 @@ export function Footer() {
                     <li key={service.id}>
                       <Link
                         href={`/contact?service=${service.id}`}
-                        className="text-muted-foreground hover:text-accent transition-colors duration-200 block"
+                        className="text-muted-foreground hover:text-accent transition-colors duration-200 block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
                       >
                         {language === "en" ? service.title : service.titleEs}
                       </Link>
@@ -234,10 +245,12 @@ export function Footer() {
             <div className="overflow-hidden">
               <button
                 onClick={() => toggleSection("availability")}
-                className="w-full flex items-center justify-between"
+                className="w-full flex items-center justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded p-2"
+                aria-expanded={openSections.availability}
+                aria-label={openSections.availability ? (language === "en" ? "Collapse availability" : "Contraer disponibilidad") : (language === "en" ? "Expand availability" : "Expandir disponibilidad")}
               >
                 <h4 className="font-semibold text-lg text-primary">{currentContent.availability}</h4>
-                <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                <ChevronDown className={`h-5 w-5 text-muted-foreground transition-transform ${openSections.availability ? 'rotate-180' : ''}`} />
               </button>
               <div
                 className={`overflow-hidden transition-all duration-300 ${
@@ -283,6 +296,7 @@ export function Footer() {
                 size="sm"
                 onClick={scrollToTop}
                 className="group hover:bg-accent/10 hover:text-accent transition-all cursor-pointer"
+                aria-label={currentContent.backToTop}
               >
                 <ArrowUp className="h-4 w-4 mr-2 transition-transform group-hover:-translate-y-1" />
                 {currentContent.backToTop}

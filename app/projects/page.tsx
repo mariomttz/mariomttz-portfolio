@@ -32,7 +32,7 @@ export const metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main id="main-content" className="min-h-screen bg-background">
       <Navbar />
       <ProjectsHero />
       <ProjectsGrid />
